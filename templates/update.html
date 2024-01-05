@@ -1,0 +1,47 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-dark text-light">
+        <h1><a class="navbar-brand" href="{{ url_for('index')}}">Página Inicial</a></h1>
+    </nav>
+    <div class="container mt-4">
+        <div class="card border rounded p-3">
+            <h2 class="card-title text-center">Atualizar usuário</h2>
+            <form action="{{ url_for('update', user_id=user_data['id']) }}" method="post">
+                {% block title %}
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nome:</label>
+                    <input class="form-control" type="text" name="name" id="name" value="{{ user_data['name'] }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input class="form-control" type="text" name="username" id="username" value="{{ user_data['username'] }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input class="form-control" type="email" name="email" id="email" value="{{ user_data['email'] }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone:</label>
+                    <input class="form-control" type="text" name="phone" value="{{ user_data['phone'] }}" id="phone">
+                </div>
+                <div class="mb-3">
+                    <label for="website" class="form-label">Website:</label>
+                    <input class="form-control" type="text" name="website" value="{{ user_data['website'] }}" id="website">
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address:</label>
+                    <input class="form-control" type="text" name="address" id="address" value="{{ user_data['address'] }}">
+                </div>
+                <div class="mb-3">
+                    <label for="company" class="form-label">Company:</label>
+                    <input class="form-control" type="text" name="company" id="company" value="{{ user_data['company'] }}">
+                </div>
+                {% endblock %}
+                <button type="submit" class="btn btn-primary mt-3">Atualizar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

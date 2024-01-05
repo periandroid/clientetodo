@@ -1,0 +1,25 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-dark text-light">
+        <h1><a class="navbar-brand" href="{{ url_for('index')}}">Página Inicial</a></h1>
+    </nav>
+    <div class="table-responsive">
+        <table id="datatablesSimple" class="table">
+            <thead>
+                <tr>
+                    <th><h2>{% block title %} {{ user_data['name'] }} {% endblock %}</h2></th>
+                </tr>
+            </thead>
+            <tbody>
+
+        {% for field in user_data %}
+        <tr>
+            <td><h4> <b>{{ field }}</b>: {{ user_data[field] }} </p> </h4></td>
+        </tr> 
+    </div>  
+</div>
+    {% endfor %}
+    <td><h4><a href="{{ url_for('createTodo') }}"><button class="btn btn-primary" type="submit"> Adicionar todo</button></a></h4></td>
+{% endblock %}

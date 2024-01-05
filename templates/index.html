@@ -1,0 +1,31 @@
+{% extends "bootstrap/base.html" %}
+{% block content %}
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-dark text-light">    
+        <h3>Meus: To do</h3>
+    </nav>
+    <div class="table-responsive">
+        <table id="datatablesSimple" class="table">
+            <thead>
+                <tr>
+                    <th><h2>Usuários</h2></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>
+                            <h4><a href="/user/{{ user["id"] }}"> {{ user["id"]}} - {{ user["name"]}}</a></h4>
+                            <a class="text-primary" href="{{ url_for('update', user_id=user.id) }}">editar</a>
+                            <a class="text-danger" href="{{ url_for('delete', user_id=user.id) }}">delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td><h4><a href="{{ url_for('create') }}"><button class="btn btn-primary" type="submit"> Adicionar usuário</button></a></h4></td>
+                </tr>           
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

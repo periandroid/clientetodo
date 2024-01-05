@@ -1,0 +1,45 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-dark text-light">
+        <h1><a class="navbar-brand" href="{{ url_for('index')}}">Página Inicial</a></h1>
+    </nav>
+    <div class="container mt-4">
+        <div class="card border rounded p-3">
+            <h2 class="card-title text-center">Criar novo usuário</h2>
+            <form action="{{ url_for('create') }}" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nome:</label>
+                    <input class="form-control" type="text" name="name" id="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username:</label>
+                    <input class="form-control" type="text" name="username" id="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input class="form-control" type="email" name="email" id="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone:</label>
+                    <input class="form-control" type="text" name="phone" id="phone">
+                </div>
+                <div class="mb-3">
+                    <label for="website" class="form-label">Website:</label>
+                    <input class="form-control" type="text" name="website" id="website">
+                </div>
+                <div class="mb-3">
+                    <label for="address" class="form-label">Address:</label>
+                    <input class="form-control" type="text" name="address" id="address">
+                </div>
+                <div class="mb-3">
+                    <label for="company" class="form-label">Company:</label>
+                    <input class="form-control" type="text" name="company" id="company">
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Criar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
