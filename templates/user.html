@@ -13,13 +13,18 @@
                 </tr>
             </thead>
             <tbody>
-
-        {% for field in user_data %}
         <tr>
-            <td><h4> <b>{{ field }}</b>: {{ user_data[field] }} </p> </h4></td>
+            <td><h4> <b>Nome</b>: {{ user_data["name"] }} </p> </h4></td>
+            <td><h4> <b>Nome</b>: {{ user_data["todos"]["title"] }} </p> </h4></td>
         </tr> 
     </div>  
 </div>
+    {% for todos in user_data["todos"] %}
+    <tr>
+        <td><h4> <b>Titulo</b>: {{ todos["title"] }} </p> </h4></td>
+    </tr> 
     {% endfor %}
+</div>  
+</div>
     <td><h4><a href="{{ url_for('createTodo') }}"><button class="btn btn-primary" type="submit"> Adicionar todo</button></a></h4></td>
 {% endblock %}

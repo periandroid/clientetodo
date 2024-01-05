@@ -1,12 +1,16 @@
 import requests
 
 # Definindo a classe users
-class Users:
+class Todos:
    
     # URL do serviço REST
     #base_url = "https://jsonplaceholder.typicode.com/users/"
     #base_url = "http://localhost:5001/users/"
-    base_url = "http://localhost:8000/users/"
+    #base_url = "http://localhost:8000/users/todos/"
+
+    def __init__(self, user_id):
+        self.user_id = user_id
+        self.base_url = f'http://localhost:8000/users/{user_id}/todos/'
 
     def list(self):
         url = self.base_url
@@ -15,7 +19,7 @@ class Users:
         if response.status_code == 200:
             return response.json()
         else:
-            raise ValueError("ID inválido")
+            raise ValueError("ID inválido "+str(response.status_code))
 
     def read(self, user_id):
         url = self.base_url+str(user_id)
