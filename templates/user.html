@@ -5,26 +5,77 @@
     <nav class="navbar navbar-expand-lg bg-dark text-light">
         <h1><a class="navbar-brand" href="{{ url_for('index')}}">Página Inicial</a></h1>
     </nav>
+    <h2>{% block title %} {{ user_data['name'] }} {% endblock %}</h2>
+
     <div class="table-responsive">
         <table id="datatablesSimple" class="table">
             <thead>
                 <tr>
-                    <th><h2>{% block title %} {{ user_data['name'] }} {% endblock %}</h2></th>
+                    <th>Nome</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Website</th>
+                    <th>Endereço</th>
+                    <th>Compania</th>                   
                 </tr>
             </thead>
             <tbody>
-        <tr>
-            <td><h4> <b>Nome</b>: {{ user_data["name"] }} </p> </h4></td>
-            <td><h4> <b>Nome</b>: {{ user_data["todos"]["title"] }} </p> </h4></td>
-        </tr> 
+                <tr>
+                    <td><h4>{{ user_data["name"] }}</h4></td>
+                    <td><h4>{{ user_data["username"] }}</h4></td>
+                    <td><h4>{{ user_data["email"] }}</h4></td>
+                    <td><h4>{{ user_data["phone"] }}</h4></td>
+                    <td><h4>{{ user_data["website"] }}</h4></td>
+                    <td><h4>{{ user_data["address"] }}</h4></td>
+                    <td><h4>{{ user_data["company"] }}</h4></td>
+                </tr> 
+            </tbody>
+        </table>
     </div>  
+
+    <div class="table-responsive">
+        <table id="datatablesSimple" class="table">
+            <thead>
+                <tr>
+                    <th><h2>Lista dos To do</h2></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in user_data["todos"] %}
+                    <tr>
+                        <td>
+                            <h4><b>Titulo</b>: {{ todo["title"] }}</h4>
+                            <h4><b>Feito</b>: {{ todo["completed"] }}</h4>
+                            <a class="text-primary" href="#">editar</a>
+                            <a class="text-danger" href="{{ url_for('deletetodo', user_id=user_data['id'], todo_id=todo['id']) }}">delete</a>
+                        </td>
+                    </tr> 
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-responsive">
+        <table id="datatablesSimple" class="table">
+            <thead>
+                <tr>
+                    <th><h2>Lista dos Posts</h2></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in user_data["posts"] %}
+                    <tr>
+                        <td>
+                            <h4><b>Titulo</b>: {{ post["title"] }}</h4>
+                            <h4><b>Corpo</b>: {{ post["body"] }}</h4>
+                            <a class="text-primary" href="#">editar</a>
+                            <a class="text-danger" href="{{ url_for('deletepost', user_id=user_data['id'], post_id=post['id']) }}">delete</a>
+                        </td>
+                    </tr> 
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
-    {% for todos in user_data["todos"] %}
-    <tr>
-        <td><h4> <b>Titulo</b>: {{ todos["title"] }} </p> </h4></td>
-    </tr> 
-    {% endfor %}
-</div>  
-</div>
-    <td><h4><a href="{{ url_for('createTodo') }}"><button class="btn btn-primary" type="submit"> Adicionar todo</button></a></h4></td>
 {% endblock %}

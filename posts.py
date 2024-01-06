@@ -1,11 +1,11 @@
 import requests
 
 # Definindo a classe users
-class Todos:
+class Posts:
 
     def __init__(self, user_id):
         self.user_id = user_id
-        self.base_url = f'http://localhost:8000/users/{user_id}/todos/'
+        self.base_url = f'http://localhost:8000/users/{user_id}/posts/'
 
     def list(self):
         url = self.base_url

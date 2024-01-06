@@ -16,8 +16,10 @@
                     <tr>
                         <td>
                             <h4><a href="/user/{{ user["id"] }}"> {{ user["id"]}} - {{ user["name"]}}</a></h4>
-                            <a class="text-primary" href="{{ url_for('update', user_id=user.id) }}">editar</a>
-                            <a class="text-danger" href="{{ url_for('delete', user_id=user.id) }}">delete</a>
+                            <a class="text-primary" href="{{ url_for('update', user_id=user.id) }}"><button type="submit" class="btn btn-success">Editar</button></a>
+                            <a class="text-danger" href="{{ url_for('delete', user_id=user.id) }}"><button type="submit" class="btn btn-danger">Delete</button></a></p>
+                            <a class="text-dark" href="{{ url_for('todo', user_id=user.id) }}"><button type="submit" class="btn btn-primary">Adicionar To Do</button></a>
+                            <a class="text-dark" href="{{ url_for('post', user_id=user.id) }}"><button type="submit" class="btn btn-primary">Adicionar Post</button></a>
                         </td>
                     </tr>
                 {% endfor %}
