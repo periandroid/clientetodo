@@ -1,0 +1,28 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-dark text-light">
+        <h1><a class="navbar-brand" href="{{ url_for('index') }}">Página Inicial</a></h1>
+    </nav>
+    <div class="container mt-4">
+        <div class="card border rounded p-3">
+            <h2 class="card-title text-center">Criar um post</h2>
+            <form action="{{ url_for('comment', user_id=user_data['id']) }}" method="post">
+                <div class="mb-3">
+                    <input class="form-control" type="hidden" name="postId" id="postId" value="{{user_data['id']}}" required>
+                    <label for="name" class="form-label">Nome:</label>
+                    <input class="form-control" type="text" name="name" id="name" required>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input class="form-control" type="email" name="email" id="email" required>
+                    </div>
+                    <label for="body" class="form-label">Body:</label>
+                    <input class="form-control" type="text" name="body" id="body" required>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Criar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

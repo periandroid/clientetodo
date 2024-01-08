@@ -47,7 +47,7 @@
                         <td>
                             <h4><b>Titulo</b>: {{ todo["title"] }}</h4>
                             <h4><b>Feito</b>: {{ todo["completed"] }}</h4>
-                            <a class="text-primary" href="#">editar</a>
+                            <a class="text-primary" href="{{ url_for('updatetodo', user_id=user_data['id'], todo_id=todo['id']) }}">editar</a>
                             <a class="text-danger" href="{{ url_for('deletetodo', user_id=user_data['id'], todo_id=todo['id']) }}">delete</a>
                         </td>
                     </tr> 
@@ -69,7 +69,7 @@
                         <td>
                             <h4><b>Titulo</b>: {{ post["title"] }}</h4>
                             <h4><b>Corpo</b>: {{ post["body"] }}</h4>
-                            <a class="text-primary" href="#">editar</a>
+                            <a class="text-primary" href="{{ url_for('updatepost', user_id=user_data['id'], post_id=post['id']) }}">editar</a>
                             <a class="text-danger" href="{{ url_for('deletepost', user_id=user_data['id'], post_id=post['id']) }}">delete</a>
                         </td>
                     </tr> 

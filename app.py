@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 import users
 import todos
 import posts
+import comments
 
 
 app = Flask(__name__)
@@ -38,6 +39,38 @@ def todo(user_id):
             flash('Todo adicionado com sucesso!')
             return render_template('user.html', user_data=user_data)
     return render_template('todo.html', user_data=user_api.read(user_id))
+
+@app.route('/user/<int:user_id>/todo/<int:todo_id>/updatetodo', methods=['GET', 'POST'])
+def updatetodo(user_id, todo_id):
+    todos_api = todos.Todos(user_id, todo_id)
+    if request.method == 'POST':
+        if not request.form['userId']:
+            flash('O userId é obrigatório!')
+        elif not request.form['title']:
+            flash('O title é obrigatório!')
+        elif not request.form['completed']:
+            flash('Informe o completed')
+        else:
+            user_data = todos_api.update(request.form)
+            flash('Todo adicionado com sucesso!')
+            return render_template('user.html', user_data=user_data)
+    return render_template('updatetodo.html', user_data=todos_api.read(user_id, todo_id))
+
+@app.route('/user/<int:user_id>/todo/<int:post_id>/updatepost', methods=['GET', 'POST'])
+def updatepost(user_id, post_id):
+    posts_api = posts.Posts(user_id)
+    if request.method == 'POST':
+        if not request.form['userId']:
+            flash('O userId é obrigatório!')
+        elif not request.form['title']:
+            flash('O title é obrigatório!')
+        elif not request.form['body']:
+            flash('Informe o completed')
+        else:
+            user_data = posts_api.update(request.form)
+            flash('Todo adicionado com sucesso!')
+            return render_template('user.html', user_data=user_api.read(user_id))
+    return render_template('updatetodo.html', user_data=user_api.read(user_id, post_id))
 
 @app.route('/user/<int:user_id>/todo/<int:todo_id>/delete', methods=['GET','POST'])
 def deletetodo(user_id, todo_id):
